@@ -1,4 +1,4 @@
-import { TabsPage } from './../tabs/tabs';
+import { FeedPage } from './../feed/feed';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -15,7 +15,9 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class IntroPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -23,6 +25,6 @@ export class IntroPage {
   }
 
   IrParaTabPage() {
-    this.navCtrl.push(TabsPage);
+    this.navCtrl.push(FeedPage);
   }
 }

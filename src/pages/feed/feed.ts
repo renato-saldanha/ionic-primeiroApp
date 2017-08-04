@@ -1,3 +1,4 @@
+import { MovieProvider } from './../../providers/movie/movie';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -10,23 +11,52 @@ import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-feed',
-  templateUrl: 'feed.html',
+  templateUrl: 'feed.html'
+  
 })
-export class FeedPage {
-  public nomeUsuario : String = "Renato Saldanha";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+export class FeedPage {
+  public feed = {
+    nome_usuario: "Renato Saldanha",
+    proffisao: "Desenvolvedor",
+    endereco: "Rua Romanos",
+    numero: 14,
+    casa: 4,
+    qtd_likes: 10,
+    comentario: "I'm Developer",
+    hora_postagem: "a 11 Horas.."
   }
 
-  public somaNumeros(n1,n2: number): void {
-    alert(n1+n2);
-    
+  public listaFilmes = new Array<any>();
+  public urlImagem: String = "https://image.tmdb.org/t/p/w500/";
+
+  public nomeUsuario: String = "Renato Saldanha";
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private movieProvider: MovieProvider) {
+
+  }
+
+  public somaNumeros(n1, n2: number): void {
+    alert(n1 + n2);
+
   }
 
   ionViewDidLoad() {
-    //this.somaNumeros(15,17);
+    this.movieProvider.getUltimoFilme().subscribe(
+      data => {
+        const response = (data as any);
+        const retorno = JSON.parse(response._body);
+        this.listaFilmes = retorno.results;
+        console.log(retorno);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
-  
+
 
 }

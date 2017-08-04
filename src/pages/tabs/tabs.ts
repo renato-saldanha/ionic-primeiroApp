@@ -1,5 +1,4 @@
 import { IntroPage } from './../intro/intro';
-import { FeedPage } from './../feed/feed';
 import { Component } from '@angular/core';
 
 import { AboutPage } from '../about/about';
